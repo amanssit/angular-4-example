@@ -1,0 +1,23 @@
+<div class="col-md-6">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of dataList">
+                <td>{{data.id}}</td>
+                <td>{{data.fname}}</td>
+                <td>{{data.lname}}</td>
+                <td>{{data.username}}</td>
+                <td><button class="btn btn-danger"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
