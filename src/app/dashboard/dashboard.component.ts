@@ -10,12 +10,24 @@ import {userService} from '../services/user-service/user.service'
 export class DashboardComponent implements OnInit {
 dataList: any[] = [];
 
-  constructor(private _userService:userService) {
-  this.dataList= _userService.getUserData();
+  constructor(private userService:userService) {
+  this.getUser();
+
    }
 
   ngOnInit() {
 
+  }
+
+  getUser()
+  {
+  this.userService.getUser().subscribe(data => this.dataList = data);
+  }
+
+  addUser(fname,lname,username){
+this.userService.addUser({fname:fname,lname:lname,username:username}).subscribe(data => console.log('data added',data,this.getUser()) 	
+
+);
   }
 
 }

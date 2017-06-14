@@ -1,32 +1,20 @@
-import { Injectable,NgModule } from '@angular/core';
-import {HttpModule, Http, URLSearchParams, Headers, RequestOptions} from '@angular/http';
-
-@NgModule({
-  imports: [HttpModule],
-  providers: [Http]
-})
+import { Injectable} from '@angular/core';
+import { Http, Response } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class userService {
-dataList: any[] = [];
-  constructor(private http: Http) {
+apiUrl:string=`http://localhost:3000/users`;
+  constructor (
+    private http: Http
+  ) {}
 
-   }
-
-  getUserData(){
-  
-    this.http.get('http://localhost:3000/users').subscribe(res => console.log(res.json()));
-
-
- this.dataList= [
-{id:1,fname:'Aman',lname:'kumar',username:'amanssit'},
-{id:2,fname:'Amit',lname:'kumar',username:'amanssit'},
-{id:3,fname:'Ajay',lname:'kumar',username:'amanssit'},
-{id:4,fname:'Anil',lname:'kumar',username:'amanssit'}
-] 
-
-return this.dataList;
-
+  getUser(){
+    return this.http.get(this.apiUrl)
+    .map((res:Response) => res.json());
   }
-
+addUser(user){
+    return this.http.post(this.apiUrl,user)
+    .map((res:Response) => res.json());
+  }
 }
